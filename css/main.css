@@ -95,20 +95,43 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+button.destroy, button.destroy:hover, button.destroy:active, button.destroy:focus {
+  border: none;
+  background: none;
+  margin: 0;
+}
 
+.item .destroy {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  font-size: 22px;
+  color: rgb(180,0,0);
+  opacity: 0.3;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
 
+.item .destroy:hover {
+  opacity: 1;
+}
 
+.item .destroy::after {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  content: '\274C';
+  line-height: 1;
+}
 
-
-
-
-
-
-
-
-
-
-
+.item:hover .destroy {
+  display: block;
+}
 
 
 /* ==========================================================================

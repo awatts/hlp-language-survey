@@ -53,9 +53,9 @@
     {{/if}}
 
     <div>
-      <label>Which language do you predominantly use at home? Please choose from
+      <label>Which language(s) do you predominantly use at home? Please choose from
        the suggestions whenever possible. If other, please specify:
-        <input type="text" name="lang" list="languages" value="{{home_language}}">
+        <input type="text" name="lang" list="languages" on-keydown='inputKeypress(event)' on-change='addHomeLanguage(event)' placeholder='Add a language used at home'>
       </label>
       <datalist id="languages">
         <select name="languages"> <!-- fallback for non-HTML5 browsers -->
@@ -64,7 +64,24 @@
           {{/language_choices}}
         </select>
       </datalist>
+      <ul>
+      {{#home_languages:i}}
+      <li class='item'>{{this}}<button on-click='removeHomeLanguage(event,i)' class='destroy'></button></li>
+      {{/home_languages}}
+      </ul>
     </div>
+
+    {{#home_languages:i}}
+    <div class="surveyq">
+      <p>At what age did you begin to learn {{this}}?
+      <select name="{{this}}.start_age">
+        {{# _.range(1,100) }}
+        <option value="{{this}}">{{this}}</option>
+        {{/}}
+      </select>
+      </p>
+    </div>
+    {{/home_languages}}
 
   </script>
 
@@ -77,6 +94,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <!--<![endif]-->
   <script src="//cdnjs.cloudflare.com/ajax/libs/webshim/1.15.10/minified/polyfiller.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/ractive/0.7.3/ractive.min.js"></script>
   <script type="text/javascript">
   // this vastly improves datalist in Chrome (broken) and Safari (nonexistant),

@@ -264,9 +264,24 @@ var ractive = new Ractive({
   data: {
     country_choices: country_choices,
     language_choices: language_choices,
-    home_language: '',
+    home_languages: ['English'],
     current_country: '',
-    languages: ['English']
+    _: _, // include underscore/lodash as a helper
+  },
+  addHomeLanguage: function(event) {
+    this.push('home_languages', event.node.value);
+    event.node.value = ''; // reset
+  },
+  removeHomeLanguage: function(event,index) {
+    this.splice('home_languages', index, 1);
+  },
+  inputKeypress: function(event) {
+    if (event.original.keyCode == 13) {
+      event.original.preventDefault();
+      event.original.stopPropagation();
+      $(event.original.target).blur().focus();
+      return false;
+    }
   },
   partials: {lang_option: '#lang_option'},
 });
