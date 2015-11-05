@@ -39,14 +39,25 @@
     <div>
       <label>US Region. Please choose the region of the US where you live:
         <select name="usregion">
-          <option value="Far West (AK, CA, HI, NV, OR, WA)">Far West (AK, CA, HI, NV, OR, WA)</option>
-          <option value="Great Lakes (IL, IN, MI, OH, WI)">Great Lakes (IL, IN, MI, OH, WI)</option>
-          <option value="Mideast (DE, D.C., MA, NJ, NY, PA)">Mideast (DE, D.C., MA, NJ, NY, PA)</option>
-          <option value="New England (CT, VT, NH, ME, MA, RI)">New England (CT, VT, NH, ME, MA, RI)</option>
-          <option value="Plains (IA, KS, MN, MO, NE, ND, SD)">Plains (IA, KS, MN, MO, NE, ND, SD)</option>
-          <option value="Rocky Mountain (CO, ID, MT, UT, WY)">Rocky Mountain (CO, ID, MT, UT, WY)</option>
-          <option value="Southeast (AL, AR, FL, GA, KY, LA, MS, NC, SC, TN, VA, WV)">Southeast (AL, AR, FL, GA, KY, LA, MS, NC, SC, TN, VA, WV)</option>
-          <option value="Southwest (AZ, NM, OK, TX)">Southwest (AZ, NM, OK, TX)</option>
+          {{#us_region_choices}}
+          <option value="{{this}}">{{this}}</option>
+          {{/us_region_choices}}
+        </select>
+      </label>
+    </div>
+    {{/if}}
+
+    {{#if current_country === "United States"}}
+    <div>
+      <label>US Region. Please choose the region of the US where you live:
+        <select name="usregion_census">
+          {{#census_regions}}
+          <optgroup label="{{this.region}}">
+          {{#subregions}}
+            <option value="{{this}}">{{this}}</option>
+          {{/subregions}}
+          </optgroup>
+          {{/census_regions}}
         </select>
       </label>
     </div>

@@ -251,6 +251,49 @@ var country_choices = [
   {isocode: "ZW", name: "Zimbabwe"},
 ];
 
+var us_region_choices = [
+  "Far West (AK, CA, HI, NV, OR, WA)",
+  "Great Lakes (IL, IN, MI, OH, WI)",
+  "Mideast (DE, D.C., MA, NJ, NY, PA)",
+  "New England (CT, VT, NH, ME, MA, RI)",
+  "Plains (IA, KS, MN, MO, NE, ND, SD)",
+  "Rocky Mountain (CO, ID, MT, UT, WY)",
+  "Southeast (AL, AR, FL, GA, KY, LA, MS, NC, SC, TN, VA, WV)",
+  "Southwest (AZ, NM, OK, TX)"
+];
+
+var census_regions = [
+  { region: "Northeast",
+    subregions: [
+      "New England (CT, ME, MA, NH, RI, VT)",
+      "Mid-Atlantic (NJ, NY, PA)"
+    ]
+  },
+  {
+    region: "Midwest",
+    subregions: [
+      "East North Central (IL, IN, MI, OH, WI)",
+      "West North Central (IA, KS, MN, MO, NE, ND, SD)"
+    ]
+  },
+  {
+    region: "South",
+    subregions: [
+      "South Atlantic (DE, FL, GA, MD, NC, SC, VA, DC, WV)",
+      "East South Central (AL, KY, MS,TN)"
+    ]
+  },
+  {
+    region: "West",
+    subregions: [
+      "West South Central (AR, LA, OK, TX)",
+      "Mountain (AZ, CO, ID, MO, NV, NM, UT, WY)",
+      "Pacific (AK, CA, HI, OR, WA)"
+    ]
+  }
+];
+
+
 var language_choices = [
   'Chinese', 'Spanish', 'English', 'Hindi', 'Arabic', 'Portuguese',
   'Bengali', 'Russian', 'Japanese', 'Javanese', 'Lahnda', 'German', 'Korean',
@@ -263,6 +306,8 @@ var ractive = new Ractive({
   template: '#template',
   data: {
     country_choices: country_choices,
+    us_region_choices: us_region_choices,
+    census_regions: census_regions,
     language_choices: language_choices,
     home_languages: ['English'],
     current_country: '',
