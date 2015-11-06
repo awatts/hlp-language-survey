@@ -631,6 +631,20 @@ var language_choices = [
   "Zuni"
 ];
 
+var proficiency_scale = [
+  {"level": 'NA', text: "N/A"},
+  {"level": 0, text: "none"},
+  {"level": 1, text: "very low"},
+  {"level": 2, text: "low"},
+  {"level": 3, text: "fair"},
+  {"level": 4, text: "slightly less than adequate"},
+  {"level": 5, text: "adequate"},
+  {"level": 6, text: "slightly more than adequate"},
+  {"level": 7, text: "good"},
+  {"level": 8, text: "very good"},
+  {"level": 9, text: "excellent"},
+  {"level": 10, text: "native / native-like"}
+];
 
 var ractive = new Ractive({
   el: '#container',
@@ -640,7 +654,9 @@ var ractive = new Ractive({
     us_region_choices: us_region_choices,
     census_regions: census_regions,
     language_choices: language_choices,
+    proficiency_scale: proficiency_scale,
     home_languages: ['English'],
+    all_lang_used: [],
     current_country: '',
     _: _, // include underscore/lodash as a helper
   },

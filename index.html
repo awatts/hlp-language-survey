@@ -63,6 +63,8 @@
     </div>
     {{/if}}
 
+    <h3>Home Language Background</h3>
+
     <div>
       <label>Which language(s) do you predominantly use at home? Please choose from
        the suggestions whenever possible. If other, please specify:
@@ -176,6 +178,92 @@
       </ul>
     </div>
 
+    <h3>General Language Background</h3>
+
+    <div>
+      <label>All languages you speak, understand, read, and/or write. Please choose from
+       the suggestions whenever possible. If other, please specify:
+        <input type="text" name="lang" list="languages2" on-keydown='inputKeypress(event)' on-change='addAllLanguage(event)' placeholder='Add a language you speak, understand, read, and/or write'>
+      </label>
+      <datalist id="languages2">
+        <select name="languages2"> <!-- fallback for non-HTML5 browsers -->
+          {{#language_choices}}
+          <option value="{{this}}">{{this}}</option>
+          {{/language_choices}}
+        </select>
+      </datalist>
+      <ul>
+      {{#all_lang_used:i}}
+      <li class='item'>{{this}}<button on-click='removeAllLanguage(event,i)' class='destroy'></button></li>
+      {{/all_lang_used}}
+      </ul>
+    </div>
+
+    <div class="surveyq" id="current_proficiency">
+      <table>
+        <thead>
+          <tr>
+            <td></td><td>Age Began Acquiring</td>
+            <td>Speaking Skill Level</td><td>At Age</td>
+            <td>Understanding Skill Level</td><td>At Age</td>
+            <td>Reading Skill Level</td><td>At Age</td>
+            <td>Writing Skill Level</td><td>At Age</td>
+          </tr>
+        </thead>
+        <tbody>
+        {{#all_lang_used}}
+        <tr>
+          <td>{{this}}</td>
+          <td>
+            <select name="{{this}}.age_began_acquiring">
+            {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
+            </select>
+          </td>
+          <td>
+            <select name="{{this}}.current_proficiency_speaking">
+              {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
+            </select>
+          </td>
+          <td>
+            <select name="{{this}}.age_proficiency_speaking">
+            {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
+            </select>
+          </td>
+          <td>
+            <select name="{{this}}.current_proficiency_understanding">
+            {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
+            </select>
+          </td>
+          <td>
+            <select name="{{this}}.age_proficiency_understanding">
+            {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
+            </select>
+          </td>
+          <td>
+            <select name="{{this}}.current_proficiency_reading">
+            {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
+            </select>
+          </td>
+          <td>
+            <select name="{{this}}.age_proficiency_reading">
+            {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
+            </select>
+          </td>
+          <td>
+            <select name="{{this}}.current_proficiency_writing">
+            {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
+            </select>
+          </td>
+          <td>
+            <select name="{{this}}.age_proficiency_writing">
+            {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
+            </select>
+          </td>
+        </tr>
+        {{/all_lang_used}}
+        </tbody>
+      </table>
+    </div>
 
   </script>
 
