@@ -265,6 +265,22 @@
       </table>
     </div>
 
+    {{!FIXME: do not generate rows if speak is N/A}}
+
+    <div class="surveyq">
+     <p>A) In your perception, how much of a foreign accent do you have in:</p>
+     <ul>
+     {{#all_lang_used}}
+     <li>{{this}}
+      <select name="{{this}}.perceived_accent">
+      {{#accent_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/accent_scale}}
+      </select>
+    </li>
+     {{/all_lang_used}}
+     </ul>
+    </div>
+
+
   </script>
 
   <!--[if lt IE 9]>

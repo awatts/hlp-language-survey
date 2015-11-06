@@ -632,18 +632,46 @@ var language_choices = [
 ];
 
 var proficiency_scale = [
-  {"level": 'NA', text: "N/A"},
-  {"level": 0, text: "none"},
-  {"level": 1, text: "very low"},
-  {"level": 2, text: "low"},
-  {"level": 3, text: "fair"},
-  {"level": 4, text: "slightly less than adequate"},
-  {"level": 5, text: "adequate"},
-  {"level": 6, text: "slightly more than adequate"},
-  {"level": 7, text: "good"},
-  {"level": 8, text: "very good"},
-  {"level": 9, text: "excellent"},
-  {"level": 10, text: "native / native-like"}
+  {level: 'NA', text: "N/A"},
+  {level: 0, text: "none"},
+  {level: 1, text: "very low"},
+  {level: 2, text: "low"},
+  {level: 3, text: "fair"},
+  {level: 4, text: "slightly less than adequate"},
+  {level: 5, text: "adequate"},
+  {level: 6, text: "slightly more than adequate"},
+  {level: 7, text: "good"},
+  {level: 8, text: "very good"},
+  {level: 9, text: "excellent"},
+  {level: 10, text: "native / native-like"}
+];
+
+var accent_scale = [
+  {level: 0, text: "none"},
+  {level: 1, text: "almost none"},
+  {level: 2, text: "very light"},
+  {level: 3, text: "light"},
+  {level: 4, text: "some"},
+  {level: 5, text: "moderate"},
+  {level: 6, text: "considerable"},
+  {level: 7, text: "heavy"},
+  {level: 8, text: "very heavy"},
+  {level: 9, text: "extremely heavy"},
+  {level: 10, text: "pervasive"}
+];
+
+var identify_scale = [
+  {level: 0, text: "never"},
+  {level: 1, text: "almost never"},
+  {level: 2, text: ""},
+  {level: 3, text: ""},
+  {level: 4, text: ""},
+  {level: 5, text: "half of the time"},
+  {level: 6, text: ""},
+  {level: 7, text: ""},
+  {level: 8, text: ""},
+  {level: 9, text: ""},
+  {level: 10, text: "always"},
 ];
 
 var ractive = new Ractive({
@@ -655,6 +683,8 @@ var ractive = new Ractive({
     census_regions: census_regions,
     language_choices: language_choices,
     proficiency_scale: proficiency_scale,
+    accent_scale: accent_scale,
+    identify_scale: identify_scale,
     home_languages: ['English'],
     all_lang_used: [],
     current_country: '',
