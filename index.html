@@ -82,8 +82,8 @@
       </ul>
     </div>
 
-    {{#home_languages:i}}
     <div class="surveyq">
+      {{#home_languages:i}}
       <p>At what age did you begin to learn {{this}}?
       <select name="{{this}}.start_age">
         {{# _.range(1,101) }}
@@ -91,11 +91,11 @@
         {{/}}
       </select>
       </p>
+      {{/home_languages}}
     </div>
-    {{/home_languages}}
 
-    {{#home_languages:i}}
     <div class="surveyq">
+      {{#home_languages:i}}
       <p>At what age did you feel comfortable speaking {{this}}? (If you still do not feel comfortable, please select “Not yet.”)
         <select name="{{this}}.comfort_age">
           <option value="Not yet">Not yet</option>
@@ -104,8 +104,8 @@
           {{/}}
         </select>
       </p>
+      {{/home_languages}}
     </div>
-    {{/home_languages}}
 
     <div class="surveyq">
       <p>If you had to choose which language to use for the rest of your life, which language would it be?
@@ -117,8 +117,8 @@
       </p>
     </div>
 
-    {{#home_languages:i}}
     <div class="surveyq">
+      {{#home_languages:i}}
       <p>How many years of schooling (primary school through university) did you have in {{this}}
         <select name="{{this}}.years_schooling">
           {{# _.range(0,26) }}
@@ -126,8 +126,8 @@
           {{/}}
         </select>
       </p>
+      {{/home_languages}}
     </div>
-    {{/home_languages}}
 
     <div class="surveyq">
       <p>When doing math in your head (such as multiplying 123 x 4), which language do you calculate numbers in in? (You can check more than one.)</p>
