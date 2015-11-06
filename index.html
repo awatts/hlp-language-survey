@@ -86,13 +86,96 @@
     <div class="surveyq">
       <p>At what age did you begin to learn {{this}}?
       <select name="{{this}}.start_age">
-        {{# _.range(1,100) }}
+        {{# _.range(1,101) }}
         <option value="{{this}}">{{this}}</option>
         {{/}}
       </select>
       </p>
     </div>
     {{/home_languages}}
+
+    {{#home_languages:i}}
+    <div class="surveyq">
+      <p>At what age did you feel comfortable speaking {{this}}? (If you still do not feel comfortable, please select “Not yet.”)
+        <select name="{{this}}.comfort_age">
+          <option value="Not yet">Not yet</option>
+          {{# _.range(1,101) }}
+          <option value="{{this}}">{{this}}</option>
+          {{/}}
+        </select>
+      </p>
+    </div>
+    {{/home_languages}}
+
+    <div class="surveyq">
+      <p>If you had to choose which language to use for the rest of your life, which language would it be?
+        <select name="one_language">
+          {{#home_languages:i}}
+          <option value="{{this}}">{{this}}</option>
+          {{/home_languages}}
+        </select>
+      </p>
+    </div>
+
+    {{#home_languages:i}}
+    <div class="surveyq">
+      <p>How many years of schooling (primary school through university) did you have in {{this}}
+        <select name="{{this}}.years_schooling">
+          {{# _.range(0,26) }}
+          <option value="{{this}}">{{this}}</option>
+          {{/}}
+        </select>
+      </p>
+    </div>
+    {{/home_languages}}
+
+    <div class="surveyq">
+      <p>When doing math in your head (such as multiplying 123 x 4), which language do you calculate numbers in in? (You can check more than one.)</p>
+      <ul>
+        {{#home_languages:i}}
+        <li>
+          <label for="{{this}}.math_language">{{this}}
+            <input type="checkbox" name="{{this}}.math_language" id="{{this}}.math_language" value="{{this}}"/>
+          </label>
+        </li>
+        {{/home_languages}}
+      </ul>
+    </div>
+
+    <div class="surveyq" id="foreign_accent">
+      <ul>
+      {{#home_languages:i}}
+      <li>
+        <p>When speaking {{this}}, do you have a foreign accent?
+          <label for="{{this}}.foreign_accent_yes">Yes
+            <input type="radio" name="{{this}}.foreign_accent" id="{{this}}.foreign_accent_yes">
+          </label>
+          <label for="{{this}}.foreign_accent_no">No
+            <input type="radio" name="{{this}}.foreign_accent" id="{{this}}.foreign_accent_no">
+          </label>
+        </p>
+      </li>
+      {{/home_languages}}
+      </ul>
+    </div>
+
+    <div class="surveyq" id="lost_fluency">
+      <ul>
+      {{#home_languages:i}}
+      <li>
+        <p>Do you feel that you have lost any fluency in {{this}}?
+          <label for="{{this}}.lost_fluency_yes">Yes
+            <input type="radio" name="{{this}}.lost_fluency" id="{{this}}.lost_fluency_yes">
+          </label>
+          <label for="{{this}}.lost_fluency_no">No
+            <input type="radio" name="{{this}}.lost_fluency" id="{{this}}.lost_fluency_no">
+          </label>
+        </p>
+      </li>
+      {{/home_languages}}
+      </ul>
+    </div>
+
 
   </script>
 
