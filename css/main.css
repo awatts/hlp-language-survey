@@ -103,11 +103,11 @@ button.destroy, button.destroy:hover, button.destroy:active, button.destroy:focu
 
 .item .destroy {
   display: none;
-  position: absolute;
+  /*position: absolute;
   top: 0;
   right: 0;
   width: 40px;
-  height: 100%;
+  height: 100%;*/
   font-size: 22px;
   color: rgb(180,0,0);
   opacity: 0.3;
@@ -121,10 +121,10 @@ button.destroy, button.destroy:hover, button.destroy:active, button.destroy:focu
 }
 
 .item .destroy::after {
-  position: absolute;
+  /*position: absolute;
   top: 55%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);*/
   content: '\274C';
   line-height: 1;
 }
@@ -133,6 +133,12 @@ button.destroy, button.destroy:hover, button.destroy:active, button.destroy:focu
   display: block;
 }
 
+.surveyq li {list-style-type: lower-alpha;}
+
+#current_proficiency td.age {border-right: 1px solid black;}
+#current_proficiency tr td:nth-child(2) {background: #ADD8E6;}
+#current_proficiency tr td:nth-child(2n+3) {background: #87CEFA;}
+#current_proficiency tr td:nth-child(2n+4) {background: #00BFFF;}
 
 /* ==========================================================================
    Helper classes
