@@ -85,32 +85,43 @@
     </div>
 
     <div class="surveyq">
+      <p>At what age did you begin to learn each language?</p>
+      <ul>
       {{#home_languages:i}}
-      <p>At what age did you begin to learn {{this}}?
-      <select name="{{this}}.start_age">
-        {{# _.range(1,101) }}
-        <option value="{{this}}">{{this}}</option>
-        {{/}}
-      </select>
-      </p>
+      <li>
+        <label>{{this}}:
+          <select name="{{this}}.start_age">
+            {{# _.range(1,101) }}
+            <option value="{{this}}">{{this}}</option>
+            {{/}}
+          </select>
+        </label>
+      </li>
       {{/home_languages}}
+      </ul>
     </div>
 
     <div class="surveyq">
-      {{#home_languages:i}}
-      <p>At what age did you feel comfortable speaking {{this}}? (If you still do not feel comfortable, please select “Not yet.”)
-        <select name="{{this}}.comfort_age">
-          <option value="Not yet">Not yet</option>
-          {{# _.range(1,101) }}
-          <option value="{{this}}">{{this}}</option>
-          {{/}}
-        </select>
-      </p>
+      <p>At what age did you feel comfortable speaking each language? (If you still do not feel comfortable, please select “Not yet.”)</p>
+      <ul>
+        {{#home_languages:i}}
+        <li>
+          <label>{{this}}:
+            <select name="{{this}}.comfort_age">
+              <option value="Not yet">Not yet</option>
+              {{# _.range(1,101) }}
+              <option value="{{this}}">{{this}}</option>
+              {{/}}
+            </select>
+          </label>
+        </li>
       {{/home_languages}}
+      </ul>
     </div>
 
     <div class="surveyq">
-      <p>If you had to choose which language to use for the rest of your life, which language would it be?
+      <p>If you had to choose which language is easiest for you to use at this point in your life,
+      which one would it be?
         <select name="one_language">
           {{#home_languages:i}}
           <option value="{{this}}">{{this}}</option>
@@ -120,15 +131,20 @@
     </div>
 
     <div class="surveyq">
-      {{#home_languages:i}}
-      <p>How many years of schooling (primary school through university) did you have in {{this}}
-        <select name="{{this}}.years_schooling">
-          {{# _.range(0,26) }}
-          <option value="{{this}}">{{this}}</option>
-          {{/}}
-        </select>
-      </p>
+      <p>How many years of schooling (primary school through university) did you have in each language?</p>
+      <ul>
+        {{#home_languages:i}}
+        <li>
+        <label>{{this}}:
+          <select name="{{this}}.years_schooling">
+            {{# _.range(0,26) }}
+            <option value="{{this}}">{{this}}</option>
+            {{/}}
+          </select>
+        </label>
+        </li>
       {{/home_languages}}
+      </ul>
     </div>
 
     <div class="surveyq">
@@ -145,34 +161,32 @@
     </div>
 
     <div class="surveyq" id="foreign_accent">
+      <p>When speaking each language, do you have a foreign accent?</p>
       <ul>
       {{#home_languages:i}}
-      <li>
-        <p>When speaking {{this}}, do you have a foreign accent?
+      <li>{{this}}:
           <label for="{{this}}.foreign_accent_yes">Yes
             <input type="radio" name="{{this}}.foreign_accent" id="{{this}}.foreign_accent_yes">
           </label>
           <label for="{{this}}.foreign_accent_no">No
             <input type="radio" name="{{this}}.foreign_accent" id="{{this}}.foreign_accent_no">
           </label>
-        </p>
       </li>
       {{/home_languages}}
       </ul>
     </div>
 
     <div class="surveyq" id="lost_fluency">
+      <p>Do you feel that you have lost any fluency in any of these languages?</p>
       <ul>
       {{#home_languages:i}}
-      <li>
-        <p>Do you feel that you have lost any fluency in {{this}}?
+      <li>{{this}}:
           <label for="{{this}}.lost_fluency_yes">Yes
             <input type="radio" name="{{this}}.lost_fluency" id="{{this}}.lost_fluency_yes">
           </label>
           <label for="{{this}}.lost_fluency_no">No
             <input type="radio" name="{{this}}.lost_fluency" id="{{this}}.lost_fluency_no">
           </label>
-        </p>
       </li>
       {{/home_languages}}
       </ul>
@@ -295,8 +309,10 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/ractive/0.7.3/ractive.min.js"></script>
   <script type="text/javascript">
-  // this vastly improves datalist in Chrome (broken) and Safari (nonexistant),
-  // but makes it way worse in Firefox (full working implementation)
+  if (!Modernizr.input.list) {
+    // this vastly improves datalist in Safari (nonexistant)
+    // and sort of fixes Chrome (broken) but screws up entry by hitting ENTER or TAB
+    // but makes it way worse in Firefox (full working implementation)
     webshim.setOptions("forms", {
       lazyCustomMessages: true,
       replaceValidationUI: true,
@@ -307,6 +323,7 @@
     });
 
     webshim.polyfill('forms');
+  }
   </script>
   <script src="js/language_survey.js"></script>
 </body>
