@@ -686,17 +686,26 @@ var ractive = new Ractive({
     accent_scale: accent_scale,
     identify_scale: identify_scale,
     home_languages: ['English'],
-    all_lang_used: [],
+    all_lang_used: ['English'],
     current_country: '',
     _: _, // include underscore/lodash as a helper
   },
   addHomeLanguage: function(event) {
     // TODO: check for empty string
     this.push('home_languages', event.node.value);
+    this.push('all_lang_used', event.node.value);
     event.node.value = ''; // reset
   },
   removeHomeLanguage: function(event,index) {
     this.splice('home_languages', index, 1);
+  },
+  addAllLanguage: function(event) {
+    // TODO: check for empty string
+    this.push('all_lang_used', event.node.value);
+    event.node.value = ''; // reset
+  },
+  removeAllLanguage: function(event,index) {
+    this.splice('all_lang_used', index, 1);
   },
   inputKeypress: function(event) {
     if (event.original.keyCode == 13) {
