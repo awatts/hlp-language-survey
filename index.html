@@ -294,6 +294,108 @@
      </ul>
     </div>
 
+    <div class="surveyq">
+      {{#all_lang_used}}
+      <datalist id="id_scale">
+        <select> <!-- fallback for non-HTML5 browsers -->
+        {{#identify_scale}}<option value="{{this.level}}">{{this.level + ": " + this.text}}</option>{{/identify_scale}}
+        </select>
+      </datalist>
+      {{/all_lang_used}}
+      <p>B) Please rate how frequently others identify you as a non-native speaker based on your accent in:</p>
+      <ul>
+      {{#all_lang_used}}
+      <li><label for="{{this}}.perceived_accent">{{this}}</label>
+        <input id="{{this}}.perceived_accent" name="{{this}}.perceived_accent"
+        class="perceived_accent" type="range" list="id_scale" min="0" max="10" step="1" value="1">
+      </li>
+      {{/all_lang_used}}
+      </ul>
+    </div>
+
+    <div class="surveyq">
+      <p>C) Please list the number of years and months you spent in each language environment:</p>
+      <p>A country where each langauge is spoken:</p>
+      <table>
+        <thead>
+          <tr><td></td><td>Years</td><td>Months</td></tr>
+        </thead>
+        <tbody>
+        {{#all_lang_used}}
+        <tr>
+          <td>{{this}}</td>
+          <td>
+            <select name="{{this}}.years_in_country">
+              {{# _.range(0,101) }}<option  value="{{this}}">{{this}}</option>{{/}}
+            </select>
+          </td>
+          <td>
+            <select name="{{this}}.months_in_country">
+              {{# _.range(0,12) }}<option  value="{{this}}">{{this}}</option>{{/}}
+            </select>
+          </td>
+        </tr>
+        {{/all_lang_used}}
+        </tbody>
+      </table>
+      <p>A family where each langauge is spoken:</p>
+      <table>
+        <thead>
+          <tr><td></td><td>Years</td><td>Months</td></tr>
+        </thead>
+        <tbody>
+        {{#all_lang_used}}
+        <tr>
+          <td>{{this}}</td>
+          <td>
+            <select name="{{this}}.years_in_family">
+              {{# _.range(0,101) }}<option  value="{{this}}">{{this}}</option>{{/}}
+            </select>
+          </td>
+          <td>
+            <select name="{{this}}.months_in_family">
+              {{# _.range(0,12) }}<option  value="{{this}}">{{this}}</option>{{/}}
+            </select>
+          </td>
+        </tr>
+        {{/all_lang_used}}
+        </tbody>
+      </table>
+      <p>A school and/or working environment where each langauge is spoken:</p>
+      <table>
+        <thead>
+          <tr><td></td><td>Years</td><td>Months</td></tr>
+        </thead>
+        <tbody>
+        {{#all_lang_used}}
+        <tr>
+          <td>{{this}}</td>
+          <td>
+            <select name="{{this}}.years_in_school_work">
+              {{# _.range(0,101) }}<option  value="{{this}}">{{this}}</option>{{/}}
+            </select>
+          </td>
+          <td>
+            <select name="{{this}}.months_in_school_work">
+              {{# _.range(0,12) }}<option  value="{{this}}">{{this}}</option>{{/}}
+            </select>
+          </td>
+        </tr>
+        {{/all_lang_used}}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="multichoice surveyq">
+      <p>Were you born in the United States?</p>
+      <input type="radio" name="language.born_us" id="language.born_us_yes" value="Yes"/><label for="language.born_us_yes">Yes</label>
+      <input type="radio" name="language.born_us" id="language.born_us_no" value="No"/><label for="language.born_us_no">No</label>
+    </div>
+
+    <div class="textentry surveyq">
+      <p>Please explain any other details about your geographic/language background you would like to share, i.e., which region/country you were born in, where you moved to (in chronological order), etc.</p>
+      <textarea name="language.otherbackground" rows="5" cols="80"></textarea>
+    </div>
 
   </script>
 
