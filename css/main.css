@@ -135,6 +135,14 @@ button.destroy, button.destroy:hover, button.destroy:active, button.destroy:focu
 
 .surveyq li {list-style-type: lower-alpha;}
 
+.surveyq p:first-of-type {
+  font-weight: bold;
+}
+
+.surveyq p:not(:first-of-type) {
+  font-style: italic;
+}
+
 #current_proficiency td.age {border-right: 1px solid black;}
 #current_proficiency tr td:nth-child(2) {background: #ADD8E6;}
 #current_proficiency tr td:nth-child(2n+3) {background: #87CEFA;}
