@@ -24,7 +24,8 @@
   <div>
     <label>Which country/region do you currently live in? Please choose from the suggestions whenever possible.
     (Suggestions are offical ISO 3166-1 assigned names.) If other, please specify:
-      <input type="text" name="country" list="countries" value="{{current_country}}">
+      <input type="text" name="country" list="countries" value="{{current_country}}"
+      placeholder="Select your current country of residence (start typing to filter)">
       <datalist id="countries">
           <select name="countries"> <!-- fallback for non-HTML5 browsers -->
             {{#country_choices}}
@@ -34,18 +35,6 @@
         </datalist>
       </label>
     </div>
-
-    {{#if current_country === "United States"}}
-    <div>
-      <label>US Region. Please choose the region of the US where you live:
-        <select name="usregion">
-          {{#us_region_choices}}
-          <option value="{{this}}">{{this}}</option>
-          {{/us_region_choices}}
-        </select>
-      </label>
-    </div>
-    {{/if}}
 
     {{#if current_country === "United States"}}
     <div>

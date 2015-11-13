@@ -95,6 +95,11 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+[type="text"] {
+  min-width: 50%;
+  max-width: 80%;
+}
+
 button.destroy, button.destroy:hover, button.destroy:active, button.destroy:focus {
   border: none;
   background: none;
