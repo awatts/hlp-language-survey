@@ -685,15 +685,15 @@ var ractive = new Ractive({
     proficiency_scale: proficiency_scale,
     accent_scale: accent_scale,
     identify_scale: identify_scale,
-    home_languages: ['English'],
-    all_lang_used: ['English'],
+    home_languages: [{name: 'English'}],
+    all_lang_used: [{name: 'English'}],
     current_country: '',
     _: _, // include underscore/lodash as a helper
   },
   addHomeLanguage: function(event) {
     // TODO: check for empty string
-    this.push('home_languages', event.node.value);
-    this.push('all_lang_used', event.node.value);
+    this.push('home_languages', {name: event.node.value});
+    this.push('all_lang_used', {name: event.node.value});
     event.node.value = ''; // reset
   },
   removeHomeLanguage: function(event,index) {
@@ -701,7 +701,7 @@ var ractive = new Ractive({
   },
   addAllLanguage: function(event) {
     // TODO: check for empty string
-    this.push('all_lang_used', event.node.value);
+    this.push('all_lang_used', {name: event.node.value});
     event.node.value = ''; // reset
   },
   removeAllLanguage: function(event,index) {

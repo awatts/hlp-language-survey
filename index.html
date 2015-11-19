@@ -68,7 +68,7 @@
       </datalist>
       <ul>
       {{#home_languages:i}}
-      <li class='item'>{{this}}<button on-click='removeHomeLanguage(event,i)' class='destroy'></button></li>
+      <li class='item'>{{this.name}}<button on-click='removeHomeLanguage(event,i)' class='destroy'></button></li>
       {{/home_languages}}
       </ul>
     </div>
@@ -78,8 +78,8 @@
       <ul>
       {{#home_languages:i}}
       <li>
-        <label>{{this}}:
-          <select name="{{this}}.start_age">
+        <label>{{this.name}}:
+          <select name="{{this.name}}.start_age" value="">
             {{# _.range(1,101) }}
             <option value="{{this}}">{{this}}</option>
             {{/}}
@@ -95,11 +95,11 @@
       <ul>
         {{#home_languages:i}}
         <li>
-          <label>{{this}}:
-            <select name="{{this}}.comfort_age">
+          <label>{{this.name}}:
+            <select name="{{this.name}}.comfort_age">
               <option value="Not yet">Not yet</option>
               {{# _.range(1,101) }}
-              <option value="{{this}}">{{this}}</option>
+              <option value="{{this.name}}">{{this.name}}</option>
               {{/}}
             </select>
           </label>
@@ -113,7 +113,7 @@
       which one would it be?
         <select name="one_language">
           {{#home_languages:i}}
-          <option value="{{this}}">{{this}}</option>
+          <option value="{{this.name}}">{{this.name}}</option>
           {{/home_languages}}
         </select>
       </p>
@@ -124,8 +124,8 @@
       <ul>
         {{#home_languages:i}}
         <li>
-        <label>{{this}}:
-          <select name="{{this}}.years_schooling">
+        <label>{{this.name}}:
+          <select name="{{this.name}}.years_schooling">
             {{# _.range(0,26) }}
             <option value="{{this}}">{{this}}</option>
             {{/}}
@@ -141,8 +141,8 @@
       <ul>
         {{#home_languages:i}}
         <li>
-          <label for="{{this}}.math_language">{{this}}
-            <input type="checkbox" name="{{this}}.math_language" id="{{this}}.math_language" value="{{this}}"/>
+          <label for="{{this.name}}.math_language">{{this.name}}
+            <input type="checkbox" name="{{this.name}}.math_language" id="{{this.name}}.math_language" value="{{this.name}}"/>
           </label>
         </li>
         {{/home_languages}}
@@ -153,12 +153,12 @@
       <p>When speaking each language, do you have a foreign accent?</p>
       <ul>
       {{#home_languages:i}}
-      <li>{{this}}:
-          <label for="{{this}}.foreign_accent_yes">Yes
-            <input type="radio" name="{{this}}.foreign_accent" id="{{this}}.foreign_accent_yes">
+      <li>{{this.name}}:
+          <label for="{{this.name}}.foreign_accent_yes">Yes
+            <input type="radio" name="{{this.name}}.foreign_accent" id="{{this.name}}.foreign_accent_yes">
           </label>
-          <label for="{{this}}.foreign_accent_no">No
-            <input type="radio" name="{{this}}.foreign_accent" id="{{this}}.foreign_accent_no">
+          <label for="{{this.name}}.foreign_accent_no">No
+            <input type="radio" name="{{this.name}}.foreign_accent" id="{{this.name}}.foreign_accent_no">
           </label>
       </li>
       {{/home_languages}}
@@ -169,12 +169,12 @@
       <p>Do you feel that you have lost any fluency in any of these languages?</p>
       <ul>
       {{#home_languages:i}}
-      <li>{{this}}:
-          <label for="{{this}}.lost_fluency_yes">Yes
-            <input type="radio" name="{{this}}.lost_fluency" id="{{this}}.lost_fluency_yes">
+      <li>{{this.name}}:
+          <label for="{{this.name}}.lost_fluency_yes">Yes
+            <input type="radio" name="{{this.name}}.lost_fluency" id="{{this.name}}.lost_fluency_yes">
           </label>
-          <label for="{{this}}.lost_fluency_no">No
-            <input type="radio" name="{{this}}.lost_fluency" id="{{this}}.lost_fluency_no">
+          <label for="{{this.name}}.lost_fluency_no">No
+            <input type="radio" name="{{this.name}}.lost_fluency" id="{{this.name}}.lost_fluency_no">
           </label>
       </li>
       {{/home_languages}}
@@ -191,13 +191,13 @@
       <datalist id="languages2">
         <select name="languages2"> <!-- fallback for non-HTML5 browsers -->
           {{#language_choices}}
-          <option value="{{this}}">{{this}}</option>
+          <option value="{{this.name}}">{{this.name}}</option>
           {{/language_choices}}
         </select>
       </datalist>
       <ul>
       {{#all_lang_used:i}}
-      <li class='item'>{{this}}<button on-click='removeAllLanguage(event,i)' class='destroy'></button></li>
+      <li class='item'>{{this.name}}<button on-click='removeAllLanguage(event,i)' class='destroy'></button></li>
       {{/all_lang_used}}
       </ul>
     </div>
@@ -216,49 +216,49 @@
         <tbody>
         {{#all_lang_used}}
         <tr>
-          <td>{{this}}</td>
+          <td>{{this.name}}</td>
           <td>
-            <select name="{{this}}.age_began_acquiring">
+            <select name="{{this.name}}.age_began_acquiring">
             {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this}}.current_proficiency_speaking">
+            <select name="{{this.name}}.current_proficiency_speaking">
               {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
             </select>
           </td>
           <td>
-            <select name="{{this}}.age_proficiency_speaking">
+            <select name="{{this.name}}.age_proficiency_speaking">
             {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this}}.current_proficiency_understanding">
+            <select name="{{this.name}}.current_proficiency_understanding">
             {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
             </select>
           </td>
           <td>
-            <select name="{{this}}.age_proficiency_understanding">
+            <select name="{{this.name}}.age_proficiency_understanding">
             {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this}}.current_proficiency_reading">
+            <select name="{{this.name}}.current_proficiency_reading">
             {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
             </select>
           </td>
           <td>
-            <select name="{{this}}.age_proficiency_reading">
+            <select name="{{this.name}}.age_proficiency_reading">
             {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this}}.current_proficiency_writing">
+            <select name="{{this.name}}.current_proficiency_writing">
             {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
             </select>
           </td>
           <td>
-            <select name="{{this}}.age_proficiency_writing">
+            <select name="{{this.name}}.age_proficiency_writing">
             {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
@@ -274,8 +274,8 @@
      <p>A) In your perception, how much of a foreign accent do you have in:</p>
      <ul>
      {{#all_lang_used}}
-     <li>{{this}}
-      <select name="{{this}}.perceived_accent">
+     <li>{{this.name}}
+      <select name="{{this.name}}.perceived_accent">
       {{#accent_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/accent_scale}}
       </select>
     </li>
@@ -294,8 +294,8 @@
       <p>B) Please rate how frequently others identify you as a non-native speaker based on your accent in:</p>
       <ul>
       {{#all_lang_used}}
-      <li><label for="{{this}}.perceived_accent">{{this}}</label>
-        <input id="{{this}}.perceived_accent" name="{{this}}.perceived_accent"
+      <li><label for="{{this.name}}.perceived_accent">{{this.name}}</label>
+        <input id="{{this.name}}.perceived_accent" name="{{this.name}}.perceived_accent"
         class="perceived_accent" type="range" list="id_scale" min="0" max="10" step="1" value="1">
       </li>
       {{/all_lang_used}}
@@ -312,14 +312,14 @@
         <tbody>
         {{#all_lang_used}}
         <tr>
-          <td>{{this}}</td>
+          <td>{{this.name}}</td>
           <td>
-            <select name="{{this}}.years_in_country">
+            <select name="{{this.name}}.years_in_country">
               {{# _.range(0,101) }}<option  value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this}}.months_in_country">
+            <select name="{{this.name}}.months_in_country">
               {{# _.range(0,12) }}<option  value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
@@ -335,14 +335,14 @@
         <tbody>
         {{#all_lang_used}}
         <tr>
-          <td>{{this}}</td>
+          <td>{{this.name}}</td>
           <td>
-            <select name="{{this}}.years_in_family">
+            <select name="{{this.name}}.years_in_family">
               {{# _.range(0,101) }}<option  value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this}}.months_in_family">
+            <select name="{{this.name}}.months_in_family">
               {{# _.range(0,12) }}<option  value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
@@ -358,14 +358,14 @@
         <tbody>
         {{#all_lang_used}}
         <tr>
-          <td>{{this}}</td>
+          <td>{{this.name}}</td>
           <td>
-            <select name="{{this}}.years_in_school_work">
+            <select name="{{this.name}}.years_in_school_work">
               {{# _.range(0,101) }}<option  value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this}}.months_in_school_work">
+            <select name="{{this.name}}.months_in_school_work">
               {{# _.range(0,12) }}<option  value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
