@@ -27,7 +27,7 @@
       <input type="text" name="country" list="countries" value="{{current_country}}"
       placeholder="Select your current country of residence (start typing to filter)">
       <datalist id="countries">
-          <select name="countries"> <!-- fallback for non-HTML5 browsers -->
+          <select name="countries" value={{current_country}}> <!-- fallback for non-HTML5 browsers -->
             {{#country_choices}}
             <option value="{{this.name}}">{{this.name}}</option>
             {{/country_choices}}
@@ -39,7 +39,7 @@
     {{#if current_country === "United States"}}
     <div>
       <label>US Region. Please choose the region of the US where you live:
-        <select name="usregion_census">
+        <select name="usregion_census" value="{{usregion_census}}">
           {{#census_regions}}
           <optgroup label="{{this.region}}">
           {{#subregions}}
@@ -366,7 +366,7 @@
           </td>
           <td>
             <select name="{{this.name}}.months_in_school_work">
-              {{# _.range(0,12) }}<option  value="{{this}}">{{this}}</option>{{/}}
+              {{# _.range(0,12) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
         </tr>
@@ -377,13 +377,13 @@
 
     <div class="multichoice surveyq">
       <p>Were you born in the United States?</p>
-      <input type="radio" name="language.born_us" id="language.born_us_yes" value="Yes"/><label for="language.born_us_yes">Yes</label>
-      <input type="radio" name="language.born_us" id="language.born_us_no" value="No"/><label for="language.born_us_no">No</label>
+      <input type="radio" name="{{born_us}}" id="language.born_us_yes" value="Yes"/><label for="language.born_us_yes">Yes</label>
+      <input type="radio" name="{{born_us}}" id="language.born_us_no" value="No"/><label for="language.born_us_no">No</label>
     </div>
 
     <div class="textentry surveyq">
       <p>Please explain any other details about your geographic/language background you would like to share, i.e., which region/country you were born in, where you moved to (in chronological order), etc.</p>
-      <textarea name="language.otherbackground" rows="5" cols="80"></textarea>
+      <textarea name="language.otherbackground" rows="5" cols="80" value="{{otherbackground}}"></textarea>
     </div>
 
   </script>
