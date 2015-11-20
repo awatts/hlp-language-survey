@@ -9,13 +9,19 @@ button.destroy, button.destroy:hover, button.destroy:active, button.destroy:focu
   margin: 0;
 }
 
+.item {
+  position: relative;
+}
+
 .item .destroy {
   display: none;
-  /*position: absolute;
-  top: 0;
-  right: 0;
+
+  position: absolute;
+  top: -5px;
+  left: 75px;
   width: 40px;
-  height: 100%;*/
+  height: 100%;
+
   font-size: 22px;
   color: rgb(180,0,0);
   opacity: 0.3;

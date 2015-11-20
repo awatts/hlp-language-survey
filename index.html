@@ -68,7 +68,7 @@
       </datalist>
       <ul>
       {{#home_languages:i}}
-      <li class='item'>{{this.name}}<button on-click='removeHomeLanguage(event,i)' class='destroy'></button></li>
+      <li class='item'><div>{{this.name}}<button on-click='removeHomeLanguage(event,i)' class='destroy'></button></div></li>
       {{/home_languages}}
       </ul>
     </div>
@@ -80,7 +80,7 @@
       <li>
         <label>{{this.name}}:
           <select name="{{this.name}}.start_age" value="{{this.start_age}}">
-            {{# _.range(1,101) }}
+            {{# _.range(0,101) }}
             <option value="{{this}}">{{this}}</option>
             {{/}}
           </select>
