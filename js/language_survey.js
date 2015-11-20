@@ -687,7 +687,7 @@ var ractive = new Ractive({
     identify_scale: identify_scale,
     home_languages: [{name: 'English'}],
     all_lang_used: [{name: 'English'}],
-    current_country: '',
+    general_questions: {},
     _: _, // include underscore/lodash as a helper
   },
   addHomeLanguage: function(event) {

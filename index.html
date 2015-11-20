@@ -24,10 +24,10 @@
   <div>
     <label>Which country/region do you currently live in? Please choose from the suggestions whenever possible.
     (Suggestions are offical ISO 3166-1 assigned names.) If other, please specify:
-      <input type="text" name="country" list="countries" value="{{current_country}}"
+      <input type="text" name="country" list="countries" value="{{general_questions.current_country}}"
       placeholder="Select your current country of residence (start typing to filter)">
       <datalist id="countries">
-          <select name="countries" value={{current_country}}> <!-- fallback for non-HTML5 browsers -->
+          <select name="countries" value={{general_questions.current_country}}> <!-- fallback for non-HTML5 browsers -->
             {{#country_choices}}
             <option value="{{this.name}}">{{this.name}}</option>
             {{/country_choices}}
@@ -36,10 +36,10 @@
       </label>
     </div>
 
-    {{#if current_country === "United States"}}
+    {{#if general_questions.current_country === "United States"}}
     <div>
       <label>US Region. Please choose the region of the US where you live:
-        <select name="usregion_census" value="{{usregion_census}}">
+        <select name="usregion_census" value="{{general_questions.usregion_census}}">
           {{#census_regions}}
           <optgroup label="{{this.region}}">
           {{#subregions}}
@@ -79,7 +79,7 @@
       {{#home_languages:i}}
       <li>
         <label>{{this.name}}:
-          <select name="{{this.name}}.start_age" value="">
+          <select name="{{this.name}}.start_age" value="{{this.start_age}}">
             {{# _.range(1,101) }}
             <option value="{{this}}">{{this}}</option>
             {{/}}
@@ -96,10 +96,10 @@
         {{#home_languages:i}}
         <li>
           <label>{{this.name}}:
-            <select name="{{this.name}}.comfort_age">
+            <select name="{{this.name}}.comfort_age" value="{{this.comfort_age}}">
               <option value="Not yet">Not yet</option>
               {{# _.range(1,101) }}
-              <option value="{{this.name}}">{{this.name}}</option>
+              <option value="{{this}}">{{this}}</option>
               {{/}}
             </select>
           </label>
@@ -111,7 +111,7 @@
     <div class="surveyq">
       <p>If you had to choose which language is easiest for you to use at this point in your life,
       which one would it be?
-        <select name="one_language">
+        <select name="one_language" value="{{general_questions.one_language}}">
           {{#home_languages:i}}
           <option value="{{this.name}}">{{this.name}}</option>
           {{/home_languages}}
@@ -125,7 +125,7 @@
         {{#home_languages:i}}
         <li>
         <label>{{this.name}}:
-          <select name="{{this.name}}.years_schooling">
+          <select name="{{this.name}}.years_schooling" value="{{this.years_schooling}}">
             {{# _.range(0,26) }}
             <option value="{{this}}">{{this}}</option>
             {{/}}
@@ -142,7 +142,7 @@
         {{#home_languages:i}}
         <li>
           <label for="{{this.name}}.math_language">{{this.name}}
-            <input type="checkbox" name="{{this.name}}.math_language" id="{{this.name}}.math_language" value="{{this.name}}"/>
+            <input type="checkbox" name="{{this.name}}.math_language" id="{{this.name}}.math_language" checked='{{this.math_language}}'/>
           </label>
         </li>
         {{/home_languages}}
@@ -155,10 +155,10 @@
       {{#home_languages:i}}
       <li>{{this.name}}:
           <label for="{{this.name}}.foreign_accent_yes">Yes
-            <input type="radio" name="{{this.name}}.foreign_accent" id="{{this.name}}.foreign_accent_yes">
+            <input type="radio" name="{{this.foreign_accent}}" id="{{this.name}}.foreign_accent_yes" value="Yes">
           </label>
           <label for="{{this.name}}.foreign_accent_no">No
-            <input type="radio" name="{{this.name}}.foreign_accent" id="{{this.name}}.foreign_accent_no">
+            <input type="radio" name="{{this.foreign_accent}}" id="{{this.name}}.foreign_accent_no" value="No">
           </label>
       </li>
       {{/home_languages}}
@@ -171,10 +171,10 @@
       {{#home_languages:i}}
       <li>{{this.name}}:
           <label for="{{this.name}}.lost_fluency_yes">Yes
-            <input type="radio" name="{{this.name}}.lost_fluency" id="{{this.name}}.lost_fluency_yes">
+            <input type="radio" name="{{this.lost_fluency}}" id="{{this.name}}.lost_fluency_yes" value="Yes">
           </label>
           <label for="{{this.name}}.lost_fluency_no">No
-            <input type="radio" name="{{this.name}}.lost_fluency" id="{{this.name}}.lost_fluency_no">
+            <input type="radio" name="{{this.lost_fluency}}" id="{{this.name}}.lost_fluency_no" value="No">
           </label>
       </li>
       {{/home_languages}}
@@ -218,47 +218,47 @@
         <tr>
           <td>{{this.name}}</td>
           <td>
-            <select name="{{this.name}}.age_began_acquiring">
+            <select name="{{this.name}}.age_began_acquiring" value="{{this.age_began_acquiring}}">
             {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.current_proficiency_speaking">
+            <select name="{{this.name}}.current_proficiency_speaking" value="{{this.current_proficiency_speaking}}">
               {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.age_proficiency_speaking">
+            <select name="{{this.name}}.age_proficiency_speaking" value="{{this.age_proficiency_speaking}}">
             {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.current_proficiency_understanding">
+            <select name="{{this.name}}.current_proficiency_understanding" value="{{this.current_proficiency_understanding}}">
             {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.age_proficiency_understanding">
+            <select name="{{this.name}}.age_proficiency_understanding" value="{{this.age_proficiency_understanding}}">
             {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.current_proficiency_reading">
+            <select name="{{this.name}}.current_proficiency_reading" value="{{this.current_proficiency_reading}}">
             {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.age_proficiency_reading">
+            <select name="{{this.name}}.age_proficiency_reading" value="{{this.age_proficiency_reading}}">
             {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.current_proficiency_writing">
+            <select name="{{this.name}}.current_proficiency_writing" value="{{this.current_proficiency_writing}}">
             {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.age_proficiency_writing">
+            <select name="{{this.name}}.age_proficiency_writing" value="{{this.age_proficiency_writing}}">
             {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
@@ -271,33 +271,35 @@
     {{!FIXME: do not generate rows if speak is N/A}}
 
     <div class="surveyq">
-     <p>A) In your perception, how much of a foreign accent do you have in:</p>
-     <ul>
-     {{#all_lang_used}}
+    <p>A) In your perception, how much of a foreign accent do you have in:</p>
+    <ul>
+    {{#all_lang_used}}
+     {{#if this.current_proficiency_speaking !== "NA"}}
      <li>{{this.name}}
-      <select name="{{this.name}}.perceived_accent">
+      <select name="{{this.name}}.self_perceived_accent" value="{{this.self_perceived_accent}}">
       {{#accent_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/accent_scale}}
       </select>
-    </li>
-     {{/all_lang_used}}
-     </ul>
+     </li>
+     {{/if}}
+    {{/all_lang_used}}
+    </ul>
     </div>
 
     <div class="surveyq">
-      {{#all_lang_used}}
       <datalist id="id_scale">
         <select> <!-- fallback for non-HTML5 browsers -->
         {{#identify_scale}}<option value="{{this.level}}">{{this.level + ": " + this.text}}</option>{{/identify_scale}}
         </select>
       </datalist>
-      {{/all_lang_used}}
       <p>B) Please rate how frequently others identify you as a non-native speaker based on your accent in:</p>
       <ul>
       {{#all_lang_used}}
-      <li><label for="{{this.name}}.perceived_accent">{{this.name}}</label>
-        <input id="{{this.name}}.perceived_accent" name="{{this.name}}.perceived_accent"
-        class="perceived_accent" type="range" list="id_scale" min="0" max="10" step="1" value="1">
-      </li>
+        {{#if this.current_proficiency_speaking !== "NA"}}
+        <li><label for="{{this.name}}.others_id_nonnative">{{this.name}}</label>
+          <input id="{{this.name}}.others_id_nonnative" name="{{this.name}}.others_id_nonnative"
+          class="others_id_nonnative" type="range" list="id_scale" min="0" max="10" step="1" value="{{this.others_id_nonnative}}">
+        </li>
+        {{/if}}
       {{/all_lang_used}}
       </ul>
     </div>
@@ -314,12 +316,12 @@
         <tr>
           <td>{{this.name}}</td>
           <td>
-            <select name="{{this.name}}.years_in_country">
+            <select name="{{this.name}}.years_in_country" value="{{this.in_country.years}}">
               {{# _.range(0,101) }}<option  value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.months_in_country">
+            <select name="{{this.name}}.months_in_country" value="{{this.in_country.months}}">
               {{# _.range(0,12) }}<option  value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
@@ -337,12 +339,12 @@
         <tr>
           <td>{{this.name}}</td>
           <td>
-            <select name="{{this.name}}.years_in_family">
+            <select name="{{this.name}}.years_in_family" value="{{this.in_family.years}}">
               {{# _.range(0,101) }}<option  value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.months_in_family">
+            <select name="{{this.name}}.months_in_family" value="{{this.in_family.months}}">
               {{# _.range(0,12) }}<option  value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
@@ -360,12 +362,12 @@
         <tr>
           <td>{{this.name}}</td>
           <td>
-            <select name="{{this.name}}.years_in_school_work">
+            <select name="{{this.name}}.years_in_school_work" value="{{this.in_school_work.years}}">
               {{# _.range(0,101) }}<option  value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.months_in_school_work">
+            <select name="{{this.name}}.months_in_school_work" value="{{this.in_school_work.months}}">
               {{# _.range(0,12) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
@@ -377,13 +379,13 @@
 
     <div class="multichoice surveyq">
       <p>Were you born in the United States?</p>
-      <input type="radio" name="{{born_us}}" id="language.born_us_yes" value="Yes"/><label for="language.born_us_yes">Yes</label>
-      <input type="radio" name="{{born_us}}" id="language.born_us_no" value="No"/><label for="language.born_us_no">No</label>
+      <input type="radio" name="{{general_questions.born_us}}" id="language.born_us_yes" value="Yes"/><label for="language.born_us_yes">Yes</label>
+      <input type="radio" name="{{general_questions.born_us}}" id="language.born_us_no" value="No"/><label for="language.born_us_no">No</label>
     </div>
 
     <div class="textentry surveyq">
       <p>Please explain any other details about your geographic/language background you would like to share, i.e., which region/country you were born in, where you moved to (in chronological order), etc.</p>
-      <textarea name="language.otherbackground" rows="5" cols="80" value="{{otherbackground}}"></textarea>
+      <textarea name="language.otherbackground" rows="5" cols="80" value="{{general_questions.otherbackground}}"></textarea>
     </div>
 
   </script>
