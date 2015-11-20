@@ -715,5 +715,13 @@ var ractive = new Ractive({
       return false;
     }
   },
+  saveSurvey: function(event) {
+    var survey_data = JSON.stringify({
+      home_languages: this.get('home_languages'),
+      all_lang_used: this.get('all_lang_used'),
+      general_questions: this.get('general_questions')
+    });
+    console.log(survey_data);
+  },
   partials: {lang_option: '#lang_option'},
 });
