@@ -57,12 +57,12 @@
     <div>
       <label>All languages you speak, understand, read, and/or write. Please choose from
        the suggestions whenever possible. If other, please specify:
-        <input type="text" name="lang" list="languages2" on-keydown='inputKeypress(event)' on-change='addAllLanguage(event)' placeholder='Add a language you speak, understand, read, and/or write'>
+        <input type="text" name="lang" list="languages" on-keydown='inputKeypress(event)' on-change='addAllLanguage(event)' placeholder='Add a language you speak, understand, read, and/or write'>
       </label>
-      <datalist id="languages2">
-        <select name="languages2"> <!-- fallback for non-HTML5 browsers -->
+      <datalist id="languages">
+        <select name="languages"> <!-- fallback for non-HTML5 browsers -->
           {{#language_choices}}
-          <option value="{{this.name}}">{{this.name}}</option>
+          <option value="{{this}}">{{this}}</option>
           {{/language_choices}}
         </select>
       </datalist>
@@ -151,13 +151,16 @@
 
     <div class="surveyq">
       <p>If you had to choose which language is easiest for you to use at this point in your life,
-      which one would it be?
-        <select name="one_language" value="{{general_questions.one_language}}">
-          {{#all_lang_used:i}}
-          <option value="{{this.name}}">{{this.name}}</option>
-          {{/all_lang_used}}
-        </select>
-      </p>
+      which one would it be?</p>
+      <ul>
+        {{#all_lang_used:i}}
+        <li>
+        <label for="{{this.name}}.one_language">{{this.name}}
+          <input type="radio" name="{{general_questions.one_language}}" id="{{this.name}}.one_language" value="{{this.name}}">
+        </label>
+        </li>
+        {{/all_lang_used}}
+      </ul>
     </div>
 
     <div class="surveyq">
