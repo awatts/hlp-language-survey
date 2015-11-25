@@ -62,5 +62,45 @@ button.destroy, button.destroy:hover, button.destroy:active, button.destroy:focu
 #current_proficiency tr td:nth-child(2n+3) {background: #87CEFA;}
 #current_proficiency tr td:nth-child(2n+4) {background: #00BFFF;}
 
+
+input[type='range'] {
+  position: relative;
+  border: solid 0 transparent;
+  border-width: 0 1em;
+  padding: 1em 0 0;
+  width: 32em;
+  height: 2em;
+
+  font-size: 1em;
+  cursor: pointer;
 }
 
+}
+
+input[type='range']::-webkit-slider-runnable-track:before,
+input[type='range']::-webkit-slider-runnable-track:after,
+input[type='range']::-ms-track:before,
+input[type='range']::-ms-track:after,
+input[type='range'] #track:before,
+input[type='range'] #track:after {
+  position: absolute;
+  bottom: 100%;
+  color: #2c2c2b;
+  font: 700 0.875em / 2 arial, sans-serif;
+}
+
+input[type='range']::-webkit-slider-runnable-track:before,
+input[type='range']::-ms-track:before,
+input[type='range'] #track:before {
+  left: 0.8125em;
+  word-spacing: 2.5em;
+  content: '0 1 2 3 4 5';
+}
+
+input[type='range']::-webkit-slider-runnable-track:after,
+input[type='range']::-ms-track:after,
+input[type='range'] #track:after {
+  right: 0.625em;
+  word-spacing: 2.5em;
+  content: '6 7 8 9 10';
+}

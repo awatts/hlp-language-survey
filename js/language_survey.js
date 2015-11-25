@@ -674,6 +674,9 @@ var identify_scale = [
   {level: 10, text: "always"},
 ];
 
+
+// TODO: at the end of the form dump the JSON into a single form element
+
 var ractive = new Ractive({
   el: '#container',
   template: '#template',
@@ -685,19 +688,9 @@ var ractive = new Ractive({
     proficiency_scale: proficiency_scale,
     accent_scale: accent_scale,
     identify_scale: identify_scale,
-    home_languages: [{name: 'English'}],
     all_lang_used: [{name: 'English'}],
     general_questions: {},
     _: _, // include underscore/lodash as a helper
-  },
-  addHomeLanguage: function(event) {
-    // TODO: check for empty string
-    this.push('home_languages', {name: event.node.value});
-    this.push('all_lang_used', {name: event.node.value});
-    event.node.value = ''; // reset
-  },
-  removeHomeLanguage: function(event,index) {
-    this.splice('home_languages', index, 1);
   },
   addAllLanguage: function(event) {
     // TODO: check for empty string
@@ -717,7 +710,6 @@ var ractive = new Ractive({
   },
   saveSurvey: function(event) {
     var survey_data = JSON.stringify({
-      home_languages: this.get('home_languages'),
       all_lang_used: this.get('all_lang_used'),
       general_questions: this.get('general_questions')
     });

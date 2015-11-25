@@ -52,135 +52,6 @@
     </div>
     {{/if}}
 
-    <h3>Home Language Background</h3>
-
-    <div>
-      <label>Which language(s) do you predominantly use at home? Please choose from
-       the suggestions whenever possible. If other, please specify:
-        <input type="text" name="lang" list="languages" on-keydown='inputKeypress(event)' on-change='addHomeLanguage(event)' placeholder='Add a language used at home'>
-      </label>
-      <datalist id="languages">
-        <select name="languages"> <!-- fallback for non-HTML5 browsers -->
-          {{#language_choices}}
-          <option value="{{this}}">{{this}}</option>
-          {{/language_choices}}
-        </select>
-      </datalist>
-      <ul>
-      {{#home_languages:i}}
-      <li class='item'><div>{{this.name}}<button on-click='removeHomeLanguage(event,i)' class='destroy'></button></div></li>
-      {{/home_languages}}
-      </ul>
-    </div>
-
-    <div class="surveyq">
-      <p>At what age did you begin to learn each language?</p>
-      <ul>
-      {{#home_languages:i}}
-      <li>
-        <label>{{this.name}}:
-          <select name="{{this.name}}.start_age" value="{{this.start_age}}">
-            {{# _.range(0,101) }}
-            <option value="{{this}}">{{this}}</option>
-            {{/}}
-          </select>
-        </label>
-      </li>
-      {{/home_languages}}
-      </ul>
-    </div>
-
-    <div class="surveyq">
-      <p>At what age did you feel comfortable speaking each language? (If you still do not feel comfortable, please select “Not yet.”)</p>
-      <ul>
-        {{#home_languages:i}}
-        <li>
-          <label>{{this.name}}:
-            <select name="{{this.name}}.comfort_age" value="{{this.comfort_age}}">
-              <option value="Not yet">Not yet</option>
-              {{# _.range(1,101) }}
-              <option value="{{this}}">{{this}}</option>
-              {{/}}
-            </select>
-          </label>
-        </li>
-      {{/home_languages}}
-      </ul>
-    </div>
-
-    <div class="surveyq">
-      <p>If you had to choose which language is easiest for you to use at this point in your life,
-      which one would it be?
-        <select name="one_language" value="{{general_questions.one_language}}">
-          {{#home_languages:i}}
-          <option value="{{this.name}}">{{this.name}}</option>
-          {{/home_languages}}
-        </select>
-      </p>
-    </div>
-
-    <div class="surveyq">
-      <p>How many years of schooling (primary school through university) did you have in each language?</p>
-      <ul>
-        {{#home_languages:i}}
-        <li>
-        <label>{{this.name}}:
-          <select name="{{this.name}}.years_schooling" value="{{this.years_schooling}}">
-            {{# _.range(0,26) }}
-            <option value="{{this}}">{{this}}</option>
-            {{/}}
-          </select>
-        </label>
-        </li>
-      {{/home_languages}}
-      </ul>
-    </div>
-
-    <div class="surveyq">
-      <p>When doing math in your head (such as multiplying 123 x 4), which language do you calculate numbers in in? (You can check more than one.)</p>
-      <ul>
-        {{#home_languages:i}}
-        <li>
-          <label for="{{this.name}}.math_language">{{this.name}}
-            <input type="checkbox" name="{{this.name}}.math_language" id="{{this.name}}.math_language" checked='{{this.math_language}}'/>
-          </label>
-        </li>
-        {{/home_languages}}
-      </ul>
-    </div>
-
-    <div class="surveyq" id="foreign_accent">
-      <p>When speaking each language, do you have a foreign accent?</p>
-      <ul>
-      {{#home_languages:i}}
-      <li>{{this.name}}:
-          <label for="{{this.name}}.foreign_accent_yes">Yes
-            <input type="radio" name="{{this.foreign_accent}}" id="{{this.name}}.foreign_accent_yes" value="Yes">
-          </label>
-          <label for="{{this.name}}.foreign_accent_no">No
-            <input type="radio" name="{{this.foreign_accent}}" id="{{this.name}}.foreign_accent_no" value="No">
-          </label>
-      </li>
-      {{/home_languages}}
-      </ul>
-    </div>
-
-    <div class="surveyq" id="lost_fluency">
-      <p>Do you feel that you have lost any fluency in any of these languages?</p>
-      <ul>
-      {{#home_languages:i}}
-      <li>{{this.name}}:
-          <label for="{{this.name}}.lost_fluency_yes">Yes
-            <input type="radio" name="{{this.lost_fluency}}" id="{{this.name}}.lost_fluency_yes" value="Yes">
-          </label>
-          <label for="{{this.name}}.lost_fluency_no">No
-            <input type="radio" name="{{this.lost_fluency}}" id="{{this.name}}.lost_fluency_no" value="No">
-          </label>
-      </li>
-      {{/home_languages}}
-      </ul>
-    </div>
-
     <h3>General Language Background</h3>
 
     <div>
@@ -206,11 +77,11 @@
       <table>
         <thead>
           <tr>
-            <td></td><td>Age Began Acquiring</td>
-            <td>Speaking Skill Level</td><td>At Age</td>
-            <td>Understanding Skill Level</td><td>At Age</td>
-            <td>Reading Skill Level</td><td>At Age</td>
-            <td>Writing Skill Level</td><td>At Age</td>
+            <td></td>
+            <td>Speaking Skill Level</td>
+            <td>Understanding Skill Level</td>
+            <td>Reading Skill Level</td>
+            <td>Writing Skill Level</td>
           </tr>
         </thead>
         <tbody>
@@ -218,18 +89,8 @@
         <tr>
           <td>{{this.name}}</td>
           <td>
-            <select name="{{this.name}}.age_began_acquiring" value="{{this.age_began_acquiring}}">
-            {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
-            </select>
-          </td>
-          <td>
             <select name="{{this.name}}.current_proficiency_speaking" value="{{this.current_proficiency_speaking}}">
               {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
-            </select>
-          </td>
-          <td>
-            <select name="{{this.name}}.age_proficiency_speaking" value="{{this.age_proficiency_speaking}}">
-            {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
           <td>
@@ -238,28 +99,13 @@
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.age_proficiency_understanding" value="{{this.age_proficiency_understanding}}">
-            {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
-            </select>
-          </td>
-          <td>
             <select name="{{this.name}}.current_proficiency_reading" value="{{this.current_proficiency_reading}}">
             {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
             </select>
           </td>
           <td>
-            <select name="{{this.name}}.age_proficiency_reading" value="{{this.age_proficiency_reading}}">
-            {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
-            </select>
-          </td>
-          <td>
             <select name="{{this.name}}.current_proficiency_writing" value="{{this.current_proficiency_writing}}">
             {{#proficiency_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/proficiency_scale}}
-            </select>
-          </td>
-          <td>
-            <select name="{{this.name}}.age_proficiency_writing" value="{{this.age_proficiency_writing}}">
-            {{# _.range(0,101) }}<option value="{{this}}">{{this}}</option>{{/}}
             </select>
           </td>
         </tr>
@@ -268,7 +114,126 @@
       </table>
     </div>
 
-    {{!FIXME: do not generate rows if speak is N/A}}
+    <div class="surveyq">
+      <p>At what age did you begin to learn each language?</p>
+      <ul>
+      {{#all_lang_used:i}}
+      <li>
+        <label>{{this.name}}:
+          <select name="{{this.name}}.start_age" value="{{this.start_age}}">
+            {{# _.range(0,101) }}
+            <option value="{{this}}">{{this}}</option>
+            {{/}}
+          </select>
+        </label>
+      </li>
+      {{/all_lang_used}}
+      </ul>
+    </div>
+
+    <div class="surveyq">
+      <p>At what age did you feel comfortable speaking each language? (If you still do not feel comfortable, please select “Not yet.”)</p>
+      <ul>
+        {{#all_lang_used:i}}
+        <li>
+          <label>{{this.name}}:
+            <select name="{{this.name}}.comfort_age" value="{{this.comfort_age}}">
+              <option value="Not yet">Not yet</option>
+              {{# _.range(1,101) }}
+              <option value="{{this}}">{{this}}</option>
+              {{/}}
+            </select>
+          </label>
+        </li>
+      {{/all_lang_used}}
+      </ul>
+    </div>
+
+    <div class="surveyq">
+      <p>If you had to choose which language is easiest for you to use at this point in your life,
+      which one would it be?
+        <select name="one_language" value="{{general_questions.one_language}}">
+          {{#all_lang_used:i}}
+          <option value="{{this.name}}">{{this.name}}</option>
+          {{/all_lang_used}}
+        </select>
+      </p>
+    </div>
+
+    <div class="surveyq">
+      <p>Which language(s) do you use at home? (i.e. In your everyday life with family and friends. You can check more than one.)</p>
+      <ul>
+        {{#all_lang_used:i}}
+        <li>
+          <label for="{{this.name}}.home_languages">{{this.name}}
+            <input type="checkbox" name="{{this.name}}.home_languages" id="{{this.name}}.home_languages" checked='{{this.home_languages}}'/>
+          </label>
+        </li>
+        {{/all_lang_used}}
+      </ul>
+    </div>
+
+    <div class="surveyq">
+      <p>How many years of schooling (primary school through university) did you have in each language?</p>
+      <ul>
+        {{#all_lang_used:i}}
+        <li>
+        <label>{{this.name}}:
+          <select name="{{this.name}}.years_schooling" value="{{this.years_schooling}}">
+            {{# _.range(0,26) }}
+            <option value="{{this}}">{{this}}</option>
+            {{/}}
+          </select>
+        </label>
+        </li>
+      {{/all_lang_used}}
+      </ul>
+    </div>
+
+    <div class="surveyq">
+      <p>When doing math in your head (such as multiplying 123 x 4), which language do you calculate numbers in in? (You can check more than one.)</p>
+      <ul>
+        {{#all_lang_used:i}}
+        <li>
+          <label for="{{this.name}}.math_language">{{this.name}}
+            <input type="checkbox" name="{{this.name}}.math_language" id="{{this.name}}.math_language" checked='{{this.math_language}}'/>
+          </label>
+        </li>
+        {{/all_lang_used}}
+      </ul>
+    </div>
+
+    <div class="surveyq" id="foreign_accent">
+      <p>When speaking each language, do you have a foreign accent?</p>
+      <ul>
+      {{#all_lang_used:i}}
+      <li>{{this.name}}:
+          <label for="{{this.name}}.foreign_accent_yes">Yes
+            <input type="radio" name="{{this.foreign_accent}}" id="{{this.name}}.foreign_accent_yes" value="Yes">
+          </label>
+          <label for="{{this.name}}.foreign_accent_no">No
+            <input type="radio" name="{{this.foreign_accent}}" id="{{this.name}}.foreign_accent_no" value="No">
+          </label>
+      </li>
+      {{/all_lang_used}}
+      </ul>
+    </div>
+
+    <div class="surveyq" id="lost_fluency">
+      <p>Do you feel that you have lost any fluency in any of these languages?</p>
+      <ul>
+      {{#all_lang_used:i}}
+      <li>{{this.name}}:
+          <label for="{{this.name}}.lost_fluency_yes">Yes
+            <input type="radio" name="{{this.lost_fluency}}" id="{{this.name}}.lost_fluency_yes" value="Yes">
+          </label>
+          <label for="{{this.name}}.lost_fluency_no">No
+            <input type="radio" name="{{this.lost_fluency}}" id="{{this.name}}.lost_fluency_no" value="No">
+          </label>
+      </li>
+      {{/all_lang_used}}
+      </ul>
+    </div>
 
     <div class="surveyq">
     <p>A) In your perception, how much of a foreign accent do you have in:</p>
@@ -280,6 +245,8 @@
       {{#accent_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/accent_scale}}
       </select>
      </li>
+     {{else}}
+     <li>{{this.name}}: Select a Speaking Skill Level higher than N/A to rate</li>
      {{/if}}
     {{/all_lang_used}}
     </ul>
@@ -299,6 +266,8 @@
           <input id="{{this.name}}.others_id_nonnative" name="{{this.name}}.others_id_nonnative"
           class="others_id_nonnative" type="range" list="id_scale" min="0" max="10" step="1" value="{{this.others_id_nonnative}}">
         </li>
+        {{else}}
+        <li>{{this.name}}: Select a Speaking Skill Level higher than N/A to rate</li>
         {{/if}}
       {{/all_lang_used}}
       </ul>
