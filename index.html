@@ -22,9 +22,19 @@
 
   <script id="template" type="text/ractive">
   <div>
+  <p>
+  Now we will collect some information about your language background. This part
+  is very important for our study and will help us to understand how an individual's
+  language experience (even implicit through listening) affects how they process
+  language. We appreciate your patience and attention to detail. Please recall that
+  we will never share any of the information you provide here, other than for
+  scientific purposes <strong>after</strong> any identifying information has been removed.
+  </p>
+  </div>
+  <div>
     <label>Which country/region do you currently live in? Please choose from the suggestions whenever possible.
     (Suggestions are offical ISO 3166-1 assigned names.) If other, please specify:
-      <input type="text" name="country" list="countries" value="{{general_questions.current_country}}"
+      <input type="text" name="country" list="countries" on-keydown='inputKeypress(event)' value="{{general_questions.current_country}}"
       placeholder="Select your current country of residence (start typing to filter)">
       <datalist id="countries">
           <select name="countries" value={{general_questions.current_country}}> <!-- fallback for non-HTML5 browsers -->
@@ -278,7 +288,7 @@
 
     <div class="surveyq">
       <p>C) Please list the number of years and months you spent in each language environment:</p>
-      <p>A country where each  is spoken:</p>
+      <p>A country where this language is spoken:</p>
       <table>
         <thead>
           <tr><td></td><td>Years</td><td>Months</td></tr>
@@ -301,7 +311,7 @@
         {{/all_lang_used}}
         </tbody>
       </table>
-      <p>A family where each  is spoken:</p>
+      <p>A family where this language is spoken:</p>
       <table>
         <thead>
           <tr><td></td><td>Years</td><td>Months</td></tr>
@@ -324,7 +334,7 @@
         {{/all_lang_used}}
         </tbody>
       </table>
-      <p>A school and/or working environment where each  is spoken:</p>
+      <p>A school and/or working environment where this language is spoken:</p>
       <table>
         <thead>
           <tr><td></td><td>Years</td><td>Months</td></tr>
