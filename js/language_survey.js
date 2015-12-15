@@ -661,17 +661,13 @@ var accent_scale = [
 ];
 
 var identify_scale = [
-  {level: 0, text: "never"},
-  {level: 1, text: "almost never"},
+  {level: 1, text: "never"},
   {level: 2, text: ""},
   {level: 3, text: ""},
-  {level: 4, text: ""},
-  {level: 5, text: "half of the time"},
+  {level: 4, text: "half of the time"},
+  {level: 5, text: ""},
   {level: 6, text: ""},
-  {level: 7, text: ""},
-  {level: 8, text: ""},
-  {level: 9, text: ""},
-  {level: 10, text: "always"},
+  {level: 7, text: "always"},
 ];
 
 

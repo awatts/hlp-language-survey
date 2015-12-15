@@ -16,21 +16,21 @@
   <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
+  <div>
+    <p>Now we will collect some information about your language background. This
+       part is very important for our study and will help us to understand how an
+       individual's language experience (even implicit through listening) affects
+       how they process language. We appreciate your patience and attention to
+       detail. Please recall that we will never share any of the information you
+       provide here, other than for scientific purposes <strong>after</strong> any
+       identifying information has been removed.</p>
+  </div>
+
   <form>
     <div id="container"></div>
   </form>
 
   <script id="template" type="text/ractive">
-  <div>
-  <p>
-  Now we will collect some information about your language background. This part
-  is very important for our study and will help us to understand how an individual's
-  language experience (even implicit through listening) affects how they process
-  language. We appreciate your patience and attention to detail. Please recall that
-  we will never share any of the information you provide here, other than for
-  scientific purposes <strong>after</strong> any identifying information has been removed.
-  </p>
-  </div>
   <div>
     <label>Which country/region do you currently live in? Please choose from the suggestions whenever possible.
     (Suggestions are offical ISO 3166-1 assigned names.) If other, please specify:
@@ -254,16 +254,21 @@
     {{#all_lang_used}}
      {{#if this.current_proficiency_speaking !== "NA"}}
      <li>{{this.name}}
-      <select name="{{this.name}}.self_perceived_accent" value="{{this.self_perceived_accent}}">
-      {{#accent_scale}}<option value="{{this.level}}">{{this.text}}</option>{{/accent_scale}}
-      </select>
+      <ul>
+       {{#accent_scale}}
+       <li>
+        <input type="radio" name="{{this.self_perceived_accent}}" id="{{this.name}}.self_perceived_accent_{{this.level}}" value="{{this.level}}">
+        <label for="{{name}}.self_perceived_accent_{{this.level}}">{{this.level}} - {{this.text}}</label>
+       </li>
+        {{/accent_scale}}
+      </ul>
      </li>
      {{else}}
      <li>{{this.name}}: Select a Speaking Skill Level higher than N/A to rate</li>
      {{/if}}
-    {{/all_lang_used}}
-    </ul>
-    </div>
+     {{/all_lang_used}}
+     </ul>
+     </div>
 
     <div class="surveyq">
       <datalist id="id_scale">
@@ -275,9 +280,15 @@
       <ul>
       {{#all_lang_used}}
         {{#if this.current_proficiency_speaking !== "NA"}}
-        <li><label for="{{this.name}}.others_id_nonnative">{{this.name}}</label>
-          <input id="{{this.name}}.others_id_nonnative" name="{{this.name}}.others_id_nonnative"
-          class="others_id_nonnative" type="range" list="id_scale" min="0" max="10" step="1" value="{{this.others_id_nonnative}}">
+        <li>{{this.name}}
+          <ul>
+            {{#identify_scale}}
+            <li>
+              <input type="radio" name="{{this.name}}.others_id_nonnative" id="{{this.name}}.others_id_nonnative_{{this.level}}" value="{{this.level}}">
+              <label for="{{this.name}}.others_id_nonnative_{{this.level}}">{{this.level}} - {{this.text}}</label>
+            </li>
+            {{/identify_scale}}
+          </ul>
         </li>
         {{else}}
         <li>{{this.name}}: Select a Speaking Skill Level higher than N/A to rate</li>
