@@ -31,6 +31,32 @@
   </form>
 
   <script id="template" type="text/ractive">
+  {{#partial perceived_accent}}
+  <li>{{lang.name}}
+   <ul>
+    {{#accent_scale}}
+    <li>
+     <input type="radio" name="{{lang.self_perceived_accent}}" id="{{lang.name}}.self_perceived_accent_{{this.level}}" value="{{this.level}}">
+     <label for="{{lang.name}}.self_perceived_accent_{{this.level}}">{{this.level}} - {{this.text}}</label>
+    </li>
+     {{/accent_scale}}
+   </ul>
+  </li>
+  {{/partial}}
+
+  {{#partial others_id_nonnative}}
+  <li>{{lang.name}}
+    <ul>
+      {{#identify_scale}}
+      <li>
+        <input type="radio" name="{{lang.others_id_nonnative}}" id="{{lang.name}}.others_id_nonnative_{{this.level}}" value="{{this.level}}">
+        <label for="{{lang.name}}.others_id_nonnative_{{this.level}}">{{this.level}} - {{this.text}}</label>
+      </li>
+      {{/identify_scale}}
+    </ul>
+  </li>
+  {{/partial}}
+
   <div>
     <label>Which country/region do you currently live in? Please choose from the suggestions whenever possible.
     (Suggestions are offical ISO 3166-1 assigned names.) If other, please specify:
@@ -253,16 +279,7 @@
     <ul>
     {{#all_lang_used}}
      {{#if this.current_proficiency_speaking !== "NA"}}
-     <li>{{this.name}}
-      <ul>
-       {{#accent_scale}}
-       <li>
-        <input type="radio" name="{{this.self_perceived_accent}}" id="{{this.name}}.self_perceived_accent_{{this.level}}" value="{{this.level}}">
-        <label for="{{name}}.self_perceived_accent_{{this.level}}">{{this.level}} - {{this.text}}</label>
-       </li>
-        {{/accent_scale}}
-      </ul>
-     </li>
+      {{>perceived_accent { lang: .}}}
      {{else}}
      <li>{{this.name}}: Select a Speaking Skill Level higher than N/A to rate</li>
      {{/if}}
@@ -280,16 +297,7 @@
       <ul>
       {{#all_lang_used}}
         {{#if this.current_proficiency_speaking !== "NA"}}
-        <li>{{this.name}}
-          <ul>
-            {{#identify_scale}}
-            <li>
-              <input type="radio" name="{{this.name}}.others_id_nonnative" id="{{this.name}}.others_id_nonnative_{{this.level}}" value="{{this.level}}">
-              <label for="{{this.name}}.others_id_nonnative_{{this.level}}">{{this.level}} - {{this.text}}</label>
-            </li>
-            {{/identify_scale}}
-          </ul>
-        </li>
+          {{>others_id_nonnative { lang: .}}}
         {{else}}
         <li>{{this.name}}: Select a Speaking Skill Level higher than N/A to rate</li>
         {{/if}}
